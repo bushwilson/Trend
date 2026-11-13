@@ -1,0 +1,25 @@
+# Dependencies and builds
+node_modules/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+.terraform.lock.hcl
+
+# Secrets and keys
+*.pem
+*.key
+.env
+*.env
+kubeconfig
+credentials
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
