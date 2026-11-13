@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trendify-deployment
+  labels:
+    app: trendify
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trendify
+  template:
+    metadata:
+      labels:
+        app: trendify
+    spec:
+      containers:
+        - name: trendify
+          image: bushwilson/trendify-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 20
